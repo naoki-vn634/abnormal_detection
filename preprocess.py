@@ -15,5 +15,5 @@ class MNISTDataset(object):
 
     def __getitem__(self,index):
         img = cv2.imread(self.file_path[index])
-        img_transformed = self.transform(img[index])
+        img_transformed = self.transform(img)
         return img_transformed,self.label[index]
