@@ -2,6 +2,8 @@ import torch
 import torchvision
 import torchvision.transforms as transforms
 
+import numpy as np
+import cv2
 from PIL import Image
 
 transform = transforms.Compose(
@@ -12,9 +14,13 @@ test_dataset = torchvision.datasets.MNIST(root='/Users/matsunaganaoki/Desktop/De
 
 for i in range(len(train_dataset)):
     image,label = train_dataset[i]
-    image.save("/Users/matsunaganaoki/Desktop/DeepLearning/data/MNIST/train/{}/image_{}.png".format(str(label),i))
+    img = image.convert("L")
+    print(img.mode)
+    
+    img.save("/Users/matsunaganaoki/Desktop/DeepLearning/data/MNIST/train/{}/image_{}.png".format(str(label),i))
 
 
 for i in range(len(test_dataset)):
     image,label = test_dataset[i]
-    image.save("/Users/matsunaganaoki/Desktop/DeepLearning/data/MNIST/test/{}/image_{}.png".format(str(label),i))
+    img = image.convert("L")
+    img.save("/Users/matsunaganaoki/Desktop/DeepLearning/data/MNIST/test/{}/image_{}.png".format(str(label),i))

@@ -34,12 +34,10 @@ def eval_net(out,test_loader,net,device):
         image.to(device)
         output = net(image)
         for j in range(len(label)):
-            print(output.size())
-            print(output[j].size())
             pred = 0.5*(output[j]+1)*255 
             pred_img = pred.detach().numpy()
             pred_img = pred_img.transpose(1,2,0)
-            pred_img = cv2.cvtColor(pred_img,cv2.COLOR_BGR2GLAY)
+            # pred_img = cv2.cvtColor(pred_img,cv2.COLOR_BGR2GLAY)
             pred_img = pred_img.astype(np.uint8)
             
             num = label[j]
