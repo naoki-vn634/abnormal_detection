@@ -2,7 +2,7 @@ import argparse
 import os 
 from glob import glob
 from preprocess import MNISTDataset
-from model import ConvAutoEncoder
+from model import ConvAutoEncoder,FCAutoencoder
 import torchvision.transforms as transforms
 import numpy as np
 import torch.optim as optim
@@ -90,7 +90,9 @@ def main():
     
     
     train_dataloader = torch.utils.data.DataLoader(train_dataset,batch_size=args.batch,shuffle=True)
-    model = ConvAutoEncoder(input_dim=1, hidden_size=16, out_dim=4)
+    # model = ConvAutoEncoder(input_dim=1, hidden_size=16, out_dim=4)
+    model = FCAutoencoder()
+    print(model)
     model.to(device)
     
 
