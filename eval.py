@@ -46,8 +46,6 @@ def eval_net(out,test_loader,net,device):
         image.to(device)
         output = net(image)
         for j in range(len(label)):
-            # print(image[j].size())
-            # print(output[j].size())
             loss = loss_fn(image[j],output[j])
             pred = 0.5*(output[j]+1)*255 
             pred_img = pred.detach().numpy()
@@ -77,18 +75,20 @@ def eval_net(out,test_loader,net,device):
     loss_9 = np.sort(np.array(loss_dict["9"]))
     
     plt.figure()
-    sns.distplot(loss_0, hist=False,label="0")
     sns.distplot(loss_1, hist=False,label="1")
+    sns.distplot(loss_4, hist=False,label="4")
+    sns.distplot(loss_7, hist=False,label="7")
+    plt.savefig("result_train.png")
+    
+    plt.figure()
+    sns.distplot(loss_0, hist=False,label="0")
     sns.distplot(loss_2, hist=False,label="2")
     sns.distplot(loss_3, hist=False,label="3")
-    sns.distplot(loss_4, hist=False,label="4")
     sns.distplot(loss_5, hist=False,label="5")
     sns.distplot(loss_6, hist=False,label="6")
-    sns.distplot(loss_7, hist=False,label="7")
     sns.distplot(loss_8, hist=False,label="8")
     sns.distplot(loss_9, hist=False,label="9")
-    plt.savefig("result.png")
-    print(loss_0)
+    plt.savefig("result_test.png")
     
     
 

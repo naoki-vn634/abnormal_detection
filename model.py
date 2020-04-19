@@ -35,8 +35,9 @@ class ConvAutoEncoder(nn.Module):
     def __init__(self, input_dim=1,hidden_size=16, out_dim=4):
         super(ConvAutoEncoder, self).__init__()
         #Encoder Layers
-        self.conv1 = nn.Conv2d(input_dim, hidden_size, kernel_size = 3, padding = 1)
-        self.conv2 = nn.Conv2d(hidden_size, out_dim, kernel_size = 3, padding = 1)
+        self.conv1 = nn.Conv2d(input_dim, hidden_size, kernel_size = 2, padding = 1)
+        self.conv2 = nn.Conv2d(hidden_size,hidden_size,kernel_size = 2 ,padding = 1)
+        self.conv2 = nn.Conv2d(hidden_size, out_dim, kernel_size = 2, padding = 1)
         #Decoder Layers
         self.t_conv1 = nn.ConvTranspose2d(out_dim, hidden_size, kernel_size = 2, stride = 2)
         self.t_conv2 = nn.ConvTranspose2d(hidden_size, input_dim, kernel_size = 2, stride = 2)
